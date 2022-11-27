@@ -419,8 +419,12 @@ public void OnPluginStart() {
 	Math_VectorsEqual(vec, vec);
 	Math_Min(0, 0);
 	Math_Max(0, 0);
+	Math_MinFloat(0.0, 0.0);
+	Math_MaxFloat(0.0, 0.0);
 	Math_Clamp(0, 0, 0);
+	Math_ClampFloat(0.0, 0.0, 0.0);
 	Math_IsInBounds(0, 0, 0);
+	Math_IsInBoundsFloat(5.0, 0.0, 10.0);
 	Math_GetRandomInt(0, 0);
 	Math_GetRandomFloat(0.0, 0.0);
 	Math_GetPercentage(0, 0);

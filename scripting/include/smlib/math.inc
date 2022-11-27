@@ -51,39 +51,66 @@ stock bool Math_VectorsEqual(float vec1[3], float vec2[3], float tolerance=0.0)
 }
 
 /**
- * Sets the given value to min
- * if the value is smaller than the given.
+ * Returns a or b whichever is smaller.
  * Don't use this with float values.
- *
- * @param value			Value
- * @param min			Min Value used as lower border
- * @return				Correct value not lower than min
- */
-stock any Math_Min(any value, any min)
+ * @param a				a
+ * @param b				b
+ * @return				a or b whichever is smaller
+*/
+stock any Math_Min(any a, any b)
 {
-	if (value < min) {
-		value = min;
+	if (a > b) {
+		return b;
 	}
 
-	return value;
+	return a;
 }
 
 /**
- * Sets the given value to max
- * if the value is greater than the given.
+ * Returns a or b whichever is larger.
  * Don't use this with float values.
- *
- * @param value			Value
- * @param max			Max Value used as upper border
- * @return				Correct value not upper than max
+ * @param a				a
+ * @param b				b
+ * @return				a or b whichever is larger
  */
-stock any Math_Max(any value, any max)
+stock any Math_Max(any a, any b)
 {
-	if (value > max) {
-		value = max;
+	if (a < b) {
+		return b;
 	}
 
-	return value;
+	return a;
+}
+
+
+/**
+  * Returns a or b whichever is smaller.
+ * @param a				a
+ * @param b				b
+ * @return				a or b whichever is smaller
+ */
+stock any Math_MinFloat(float a, float b)
+{
+	if (a > b) {
+		return b;
+	}
+
+	return a;
+}
+
+/**
+ * Returns a or b whichever is larger.
+ * @param a				a
+ * @param b				b
+ * @return				a or b whichever is larger
+ */
+stock any Math_MaxFloat(float a, float b)
+{
+	if (a < b) {
+		return b;
+	}
+
+	return a;
 }
 
 /**
@@ -107,6 +134,24 @@ stock any Math_Clamp(any value, any min, any max)
 	return value;
 }
 
+/**
+ * Makes sure a value is within a certain range and
+ * returns the value.
+ * If the value is outside the range it is set to either
+ * min or max, if it is inside the range it will just return
+ * the specified value.
+ *
+ * @param value			Value
+ * @param min			Min value used as lower border
+ * @param max			Max value used as upper border
+ * @return				Correct value not lower than min and not greater than max.
+ */
+stock any Math_ClampFloat(float value, float min, float max)
+{
+	return Math_MaxFloat(Math_MinFloat(value, min), max);
+}
+
+
 /*
  * Checks if the value is within the given bounds (min & max).
  * Don't use this with float values.
@@ -117,6 +162,23 @@ stock any Math_Clamp(any value, any min, any max)
  * @return			True if the value is within bounds (bigger or equal min / smaller or equal max), false otherwise.
  */
 stock bool Math_IsInBounds(any value, any min, any max)
+{
+	if (value < min || value > max) {
+		return false;
+	}
+
+	return true;
+}
+
+/*
+ * Checks if the value is within the given bounds (min & max).
+ *
+ * @param value		The value you want to check.
+ * @param min		The lower border.
+ * @param max		The upper border.
+ * @return			True if the value is within bounds (bigger or equal min / smaller or equal max), false otherwise.
+ */
+stock bool Math_IsInBoundsFloat(float value, float min, float max)
 {
 	if (value < min || value > max) {
 		return false;
